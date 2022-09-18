@@ -55,15 +55,16 @@ def test_summary_page_text_assertions():
     # The below assertions failed when written initially as the rest ( assert (Text("$29.00").exists() )because the value is duplicated in the page.
     # To still be able to test this, I simply
     total_products_price_amount_cell = Text(above=S(locators.total_shipping_cost_cell), to_right_of=S(locators.total_products_title_cell)).value
-    total_products_price_amount_cell == "$27.00"
+    assert total_products_price_amount_cell == "$27.00"
     assert (Text("$2.00").exists())
     total_price_cell_above_tax = Text(above=S(locators.tax_cost_cell), below=S(locators.total_shipping_cost_cell)).value
-    total_price_cell_above_tax == "$29.00"
+    assert total_price_cell_above_tax == "$29.00"
     assert (Text("$0.00").exists())
     total_price_cell_below_tax = Text(below=S(locators.tax_cost_cell), to_right_of=S(locators.total_final_header_below_tax)).value
-    total_price_cell_below_tax == "$29.00"
+    assert total_price_cell_below_tax == "$29.00"
     # The following assertions fail, thus I should use the same technique as before.
-    # Since time is of the essence and there are many pages to be tested, I will not do it, but as seen above, it is possible to test these texts.
+    # Since time is of the essence and there are many pages to be tested,
+    # an example of such a test can be seen in the Addresses tests in test_addresses_changing_delivery_billing_address_add_new_address.py
     """
     assert (Text("DELIVERY ADDRESS (MOVX93@YAHOO.COM)").exists())
     assert (Text("Dan Movilianu", below="DELIVERY ADDRESS (MOVX93@YAHOO.COM)").exists())
@@ -80,5 +81,5 @@ def test_summary_page_text_assertions():
     """
     # Had to do one more for the finish
     unit_price_amount_cell = Text(below=S(locators.unit_price_column_header), to_right_of=S(locators.availability_cell)).value
-    unit_price_amount_cell == "$27.00"
+    assert unit_price_amount_cell == "$27.00"
     kill_browser()

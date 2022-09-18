@@ -47,6 +47,3 @@ def test_sign_in_page_mandatory():
     assert (Text("Choose a delivery address:").exists())
     # Test the delivery address drop-down menu choice
     time.sleep(10)
-    select_email = Select(driver.find_element_by_id('id_address_delivery'))
-    select_email.select_by_visible_text('movx93@yahoo.com')
-    select_email.select_by_value('747232')

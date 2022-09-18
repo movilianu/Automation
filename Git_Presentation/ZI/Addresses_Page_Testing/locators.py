@@ -28,3 +28,18 @@ update_billing_address_button = "//html/body/div/div[2]/div/div[3]/div/form/div/
 
 # Update Fields
 delivery_input_field_mobile_phone = "#phone_mobile"
+delivery_input_first_name = "#firstname"
+delivery_input_last_name = "#lastname"
+delivery_input_street_address = "#address1"
+delivery_input_city = "#city"
+delivery_input_state = "#id_state"
+delivery_input_zip_code = "#postcode"
+delivery_input_alis_email = "#alias"
+
+# Checkbox related
+delivery_billing_address_checkbox = "#addressesAreEquals"
+add_a_new_address_button = "//html/body/div/div[2]/div/div[3]/div/form/div/div[1]/div[2]/div/a"
+back_to_your_addresses_button = "//html/body/div/div[2]/div/div[3]/div/ul/li/a"
+
+# Textarea
+textarea = "//html/body/div/div[2]/div/div[3]/div/form/div/div[3]/textarea"

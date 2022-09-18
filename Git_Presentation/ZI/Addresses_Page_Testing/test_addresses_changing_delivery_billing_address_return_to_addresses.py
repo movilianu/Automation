@@ -50,28 +50,13 @@ def test_sign_in_page_mandatory():
     # First is the delivery update button
         # Because of lack of time, only the mobile phone update will be tested.
         # Normally, all fields should be tested with the documentation of limits and requirements as reference.
-    click(S(locators.update_delivery_address_button))
-    time.sleep(4)
-    click(S(locators.delivery_input_field_mobile_phone))
-    press(CONTROL + "a")
-    press(DELETE)
-    write("555-1234-1234")
-    click("Save")
-    time.sleep(4)
-    phone_number_billing_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_billing_address == "555-1234-1234"
-    phone_number_delivery_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_delivery_address == "555-1234-1234"
-    click(S(locators.update_billing_address_button))
-    time.sleep(4)
-    click(S(locators.delivery_input_field_mobile_phone))
-    press(CONTROL + "a")
-    press(DELETE)
-    write("555-5123-1231")
-    click("Save")
-    time.sleep(4)
-    phone_number_billing_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_billing_address == "555-5123-1231"
-    phone_number_delivery_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_delivery_address == "555-5123-1231"
+    delivery_billing_address_checkbox = driver.find_element_by_id('addressesAreEquals')
+    if delivery_billing_address_checkbox.is_selected():
+        click(delivery_billing_address_checkbox)
+    time.sleep(2)
+    assert (S(locators.add_a_new_address_button).exists())
+    click (S(locators.add_a_new_address_button))
+    time.sleep(2)
+    click (S(locators.back_to_your_addresses_button))
+    assert (Text("Be sure to update your personal information if it has changed.").exists())
     kill_browser()

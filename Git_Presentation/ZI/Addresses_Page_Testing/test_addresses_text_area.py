@@ -11,17 +11,14 @@ import time
 import config
 import locators
 options = webdriver.ChromeOptions()
-"""
-The following three arguments added to the options used for the chrome instance,
-are to exclude the "Chrome is being controlled by automated testing" infobar.
-"""
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--disable-infobars")
 # Globally defined variable for the chromedriver.exe file's path. Comment this out if needed. The test runs without it as well, it is a failsafe against possible issues.
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
-# This test is made to test the main elements found on the Addresses page.
+# This test is made to test the behavior of adding a new address on the Addresses page.
+
 def test_sign_in_page_mandatory():
     set_driver(driver)
     get_driver()
@@ -46,32 +43,10 @@ def test_sign_in_page_mandatory():
     # Ensure the user arrived on the Addresses page
     assert (Text("Choose a delivery address:").exists())
     time.sleep(4)
-    # Check that the Update buttons work as intended
-    # First is the delivery update button
-        # Because of lack of time, only the mobile phone update will be tested.
-        # Normally, all fields should be tested with the documentation of limits and requirements as reference.
-    click(S(locators.update_delivery_address_button))
-    time.sleep(4)
-    click(S(locators.delivery_input_field_mobile_phone))
-    press(CONTROL + "a")
-    press(DELETE)
-    write("555-1234-1234")
-    click("Save")
-    time.sleep(4)
-    phone_number_billing_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_billing_address == "555-1234-1234"
-    phone_number_delivery_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_delivery_address == "555-1234-1234"
-    click(S(locators.update_billing_address_button))
-    time.sleep(4)
-    click(S(locators.delivery_input_field_mobile_phone))
-    press(CONTROL + "a")
-    press(DELETE)
-    write("555-5123-1231")
-    click("Save")
-    time.sleep(4)
-    phone_number_billing_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_billing_address == "555-5123-1231"
-    phone_number_delivery_address = Text(below=S(locators.billing_address_country), above=S(locators.update_billing_address_button)).value
-    assert phone_number_delivery_address == "555-5123-1231"
+    # Ensure the textarea exists
+    assert (S(locators.textarea).exists())
+    click(S(locators.textarea))
+    write("Test456!")
+    assert (Text("Test456!", below="If you would like to add a comment about your order, please write it in the field below."))
+    # I thought about testing this further but it seems the data is not carried further.
     kill_browser()

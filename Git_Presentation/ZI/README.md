@@ -53,5 +53,6 @@ Aditional tests that were not created because of lack of time:
 - processing flow and the interaction with every element or way that the user may leave the page and then return (ex. clicking the savings banner, opening a new tab and redirecting to the same shop while closing the old tab and then refreshing the new one, searching for different products, searching for the same products, contacting support, etc.)
 - creating a new registered user while purchasing
 - deep css value analysis depending on states (it is done once in the test_e2e_flow_first.py test and once more in the test_summary_page_checkout_cart.py test)
+- retesting the data and redirects in the Payment page. This was not done because the steps are almost identical with the testing done for the summary page.The only thing different is that the user has to advance to the page by clicking Proceed for 4 times.
 
 One more thing you'll notice is that the tests' imports are not cleaned up. Opening any of these tests in PyCharm or other IDEs that notice you are not using the imports will through a warning message. For lack of time, I've not managed to go through each test and remove the unused imports. Maybe I'll have the time to do it soon though.

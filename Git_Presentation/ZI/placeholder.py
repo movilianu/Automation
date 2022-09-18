@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import pytest
@@ -20,28 +21,32 @@ options.add_argument("--disable-infobars")
 # Globally defined variable for the chromedriver.exe file's path. Comment this out if needed. The test runs without it as well, it is a failsafe against possible issues.
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
-# This test is fairly complex, it is not an easy read but it is more stable and should technically require less maintenance.
-# This test replicates how to check for a part of the proper flow when having UNSTABLE data in the testing environment
-def test_select_the_first_option():
+# This test is made to test the main elements found on the Addresses page.
+def test_sign_in_page_mandatory():
     set_driver(driver)
     get_driver()
     go_to(config.url)
-    # The time package is used here to avoid failed assertions (ergo failed test) because of page loading time.
     time.sleep(5)
-     # Identifying the login button and interacting with it
-    # Once the main page is accessed add the first item to the cart whatever it may be.
-    driver.find_elements_by_xpath("//a[@title='Add to cart']")[1].click()
-    # Continue the flow by advancing to the checkout summary page.
-    click (Text("Proceed to checkout"))
-    # Choosing to assert texts like "In stock" or "SHOPPING-CART SUMMARY" is a good way of knowing that the flow continued properly
-    # since the strings themselves did not exist in the pages prior to the current one
-    assert (Text("SHOPPING-CART SUMMARY")).exists()
-    assert (Text("In stock")).exists()
-    click (Text("Proceed to checkout"))
-# Ensure specific elements are present at this point of the checkout flow if the user is not logged in
-    assert (Text("ALREADY REGISTERED?")).exists()
-    assert (Text("Please enter your email address to create an account.")).exists()
-    # The following two assertions are great examples of how one can test that two strings exist while technically only testing for one of them
-    assert (Text("Sign in", to_left_of="Address")).exists()
-    assert (Text("Shipping", to_left_of="Payment")).exists()
-    kill_browser()
+    # Add to cart an item
+    add_to_cart = Text("Add to cart", below="Blouse")
+    click (add_to_cart)
+    # Continue the flow by advancing to the checkout addresses page.
+    time.sleep(3)
+    click ("Proceed to checkout")
+    assert (Text("Your shopping cart", above="SHOPPING-CART SUMMARY").exists())
+    click ("Proceed to checkout")
+        # Add the proper inputs in the sign in fields and sign in
+    usernameInputField = WebDriverWait(driver,4).until(EC.presence_of_element_located((By.ID , "email")))
+    usernameInputField.click()
+    usernameInputField.send_keys("movilianu" + "@" + "gmail.com")
+    driver.find_element_by_id("passwd").send_keys("Test123!")
+        # Clicking the log in button
+    signInButton = driver.find_element_by_name("SubmitLogin")
+    signInButton.click()
+    # Ensure the user arrived on the Addresses page
+    assert (Text("Choose a delivery address:").exists())
+    # Test the delivery address drop-down menu choice
+    time.sleep(10)
+    select_email = Select(driver.find_element_by_id('id_address_delivery'))
+    select_email.select_by_visible_text('movx93@yahoo.com')
+    select_email.select_by_value('747232')

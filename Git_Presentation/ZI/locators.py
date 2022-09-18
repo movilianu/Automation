@@ -11,3 +11,5 @@ logo_image = ".logo.img-responsive"
 checkbox = ".checker"
 vat_value = ".price"
 total_text_cell = ".total_price_container.text-right"
+
+email_selector = "//html/body/div/div[2]/div/div[3]/div/form/div/div[1]/div[1]/div/div/select"

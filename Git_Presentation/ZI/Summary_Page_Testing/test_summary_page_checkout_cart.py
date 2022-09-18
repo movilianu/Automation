@@ -20,7 +20,7 @@ options.add_argument("--disable-infobars")
 # Globally defined variable for the chromedriver.exe file's path. Comment this out if needed. The test runs without it as well, it is a failsafe against possible issues.
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
-# This test is made to test the Summary page
+# This test is made to test the Summary page's checkout cart and its behavior
 def test_summary_page_checkout_cart():
     set_driver(driver)
     get_driver()

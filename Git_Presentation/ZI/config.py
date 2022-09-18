@@ -1,3 +1,3 @@
-url = "www.booking.com"
+url = "www.automationpractice.com/"
 username = "movilianu@gmail.com"
-password = "Mp;5#DG51s"
+password = "Test123!"

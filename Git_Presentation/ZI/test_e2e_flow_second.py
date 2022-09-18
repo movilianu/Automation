@@ -37,7 +37,8 @@ def test_select_the_first_option():
     # Interact with the main logo element to return to the first page since this is the fastest way to reach a product
     click(S(locators.logo_image))
     # Once the main page is accessed add the first item to the cart whatever it may be.
-    click ("Add to cart")
+    add_to_cart = Text("Add to cart", below="Blouse")
+    click (add_to_cart)
     # Continue the flow by advancing to the checkout summary page.
     time.sleep(3)
     click ("Proceed to checkout")

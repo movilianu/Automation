@@ -43,7 +43,7 @@ def test_select_the_first_option():
     # Interact with the main logo element to return to the first page since this is the fastest way to reach a product
     driver.find_element_by_xpath("//html/body/div/div[1]/header/div[3]/div/div/div[1]/a/img").click()
     # Once the main page is accessed add the first item to the cart whatever it may be.
-    driver.find_elements_by_xpath("//a[@title='Add to cart']")[0].click()
+    driver.find_elements_by_xpath("//a[@title='Add to cart']")[1].click()
     # Continue the flow by advancing to the checkout summary page.
     time.sleep(3)
     driver.find_element_by_xpath("//html/body/div/div[1]/header/div[3]/div/div/div[4]/div[1]/div[2]/div[4]/a/span").click()

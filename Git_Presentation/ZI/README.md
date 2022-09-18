@@ -37,3 +37,16 @@ def example_how_the_instance_is_started_2():
     start_chrome(config.url, headless=False)
 
 For other comments reasoning the inserted line of code or argument, you may see them in the tests themselves.
+-----------------------------------
+The following presents what the tests written do. They were made with ease of writing in mid to obtain the best testing speed.
+For this, the data is predetermined and more easily tested. Of course if needed, the syntax can be changed so that elements are found as a list and selected as needed. (see test_e2e_flow_first.py for such an example).
+
+
+
+Aditional tests that were not created because of lack of time:
+- out of stock products and their behavior in the processing phase
+- extreme quantities of a product in the processing order phase
+- multiple product interactions with the processing order phase
+- editing user's information (name, street, location, phone number, email address, etc.) while the user is in the process of purchasing - this would need testing at every
+ point of the checkout phase (Summary, Address, Shipping, Payment)
+- processing flow and the interaction with every element or way that the user may leave the page and then return (ex. clicking the savings banner, opening a new tab and redirecting to the same shop while closing the old tab and then refreshing the new one, searching for different products, searching for the same products, contacting support, etc.)

@@ -1,0 +1,4 @@
+[
+  "test.py::test_login",
+  "test2.py::test_login"
+]

@@ -16,11 +16,10 @@ options = webdriver.ChromeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--disable-infobars")
-# Globally defined variable for the chromedriver.exe file's path. Comment this out if needed. The test runs without it as well, it is a failsafe against possible issues.
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
-# This test is made to test the behavior of adding a new address on the Addresses page.
-def test_sign_in_page_mandatory():
+# This test is made to test the behavior of selecting the same or different addresses for billing and/or delivery on the Addresses page.
+def test_addresses_changing_delivery_billing_same_different_addresses():
     set_driver(driver)
     get_driver()
     go_to(config.url)

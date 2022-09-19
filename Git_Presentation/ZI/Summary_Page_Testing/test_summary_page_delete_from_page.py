@@ -1,19 +1,11 @@
 from helium import *
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import pytest
 import time
 import config
 import locators
 options = webdriver.ChromeOptions()
-"""
-The following three arguments added to the options used for the chrome instance,
-are to exclude the "Chrome is being controlled by automated testing" infobar.
-"""
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--disable-infobars")
@@ -21,7 +13,7 @@ options.add_argument("--disable-infobars")
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
 # This test is made to test the Summary page's deletion button when the user clicks on the delete button in the page
-def test_summary_page_redirect_description_name():
+def test_summary_page_delete_from_page():
     set_driver(driver)
     get_driver()
     go_to(config.url)

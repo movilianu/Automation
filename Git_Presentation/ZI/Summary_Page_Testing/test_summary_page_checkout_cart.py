@@ -1,7 +1,6 @@
 from helium import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -10,14 +9,9 @@ import time
 import config
 import locators
 options = webdriver.ChromeOptions()
-"""
-The following three arguments added to the options used for the chrome instance,
-are to exclude the "Chrome is being controlled by automated testing" infobar.
-"""
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--disable-infobars")
-# Globally defined variable for the chromedriver.exe file's path. Comment this out if needed. The test runs without it as well, it is a failsafe against possible issues.
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
 # This test is made to test the Summary page's checkout cart and its behavior

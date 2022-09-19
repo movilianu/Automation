@@ -10,14 +10,9 @@ import time
 import config
 import locators
 options = webdriver.ChromeOptions()
-"""
-The following three arguments added to the options used for the chrome instance,
-are to exclude the "Chrome is being controlled by automated testing" infobar.
-"""
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--disable-infobars")
-# Globally defined variable for the chromedriver.exe file's path. Comment this out if needed. The test runs without it as well, it is a failsafe against possible issues.
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
 # This test is made to test the Summary page's texts and general data that the user sees when they arrive at the beginning of the purchasing process
@@ -52,8 +47,6 @@ def test_summary_page_text_assertions():
     assert (Text("Total").exists())
     assert (Text("Tax").exists())
     assert (Text("TOTAL").exists())
-    # The below assertions failed when written initially as the rest ( assert (Text("$29.00").exists() )because the value is duplicated in the page.
-    # To still be able to test this, I simply
     total_products_price_amount_cell = Text(above=S(locators.total_shipping_cost_cell), to_right_of=S(locators.total_products_title_cell)).value
     assert total_products_price_amount_cell == "$27.00"
     assert (Text("$2.00").exists())

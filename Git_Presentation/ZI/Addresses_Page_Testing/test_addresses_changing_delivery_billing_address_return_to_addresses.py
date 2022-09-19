@@ -11,18 +11,13 @@ import time
 import config
 import locators
 options = webdriver.ChromeOptions()
-"""
-The following three arguments added to the options used for the chrome instance,
-are to exclude the "Chrome is being controlled by automated testing" infobar.
-"""
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 options.add_experimental_option("useAutomationExtension", False)
 options.add_argument("--disable-infobars")
-# Globally defined variable for the chromedriver.exe file's path. Comment this out if needed. The test runs without it as well, it is a failsafe against possible issues.
 driver = webdriver.Chrome(executable_path=r'C:\Testing\Automation\Automation\Lib\chromedriver', options=options)
 
-# This test is made to test the main elements found on the Addresses page.
-def test_sign_in_page_mandatory():
+# This test is made to test what happens when the user is on the Addresses page, decides to make a new address but then quits mid-way.
+def test_addresses_changing_delivery_billing_address_return_to_addresses():
     set_driver(driver)
     get_driver()
     go_to(config.url)
